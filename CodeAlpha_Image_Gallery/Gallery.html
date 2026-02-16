@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Image Gallery</title>
+
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+
+<!-- Magnific Popup CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
+<style>
+.item {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+}
+
+.item img {
+  width: 200px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.item:hover img {
+  transform: scale(1.05);
+}
+
+.overlay {
+  position: absolute;
+  top:0;
+  left:0;
+  width: 200px;
+  height: 150px;
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+.item:hover .overlay {
+  opacity: 1;
+}
+</style>
+</head>
+<body>
+
+<section class="portfolio">
+<header class="section-head">
+    <h1>Product Image Gallery</h1>
+</header>
+
+<main class="mainContainer">
+
+<!-- Filter Buttons -->
+<div class="button-group">
+    <button class="button active" data-filter="*">All</button>
+    <button class="button" data-filter=".design">Headphones</button>
+    <button class="button" data-filter=".development">Laptop</button>
+    <button class="button" data-filter=".logo">Earpods</button>
+</div>
+
+<!-- Gallery -->
+<div class="gallery">
+
+<!-- HEADPHONES -->
+<div class="item design"><a href="images/headphone1.jfif"><img src="images/headphone1.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item design"><a href="images/headphone2.jfif"><img src="images/headphone2.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item design"><a href="images/headphone3.jpg"><img src="images/headphone3.jpg"><div class="overlay">VIEW</div></a></div>
+<div class="item design"><a href="images/headphone4.webp"><img src="images/headphone4.webp"><div class="overlay">VIEW</div></a></div>
+<div class="item design"><a href="images/headphone5.webp"><img src="images/headphone5.webp"><div class="overlay">VIEW</div></a></div>
+<div class="item design"><a href="images/headphone6.jpg"><img src="images/headphone6.jpg"><div class="overlay">VIEW</div></a></div>
+
+<!-- LAPTOP -->
+<div class="item development"><a href="images/laptop1.jpg"><img src="images/laptop1.jpg"><div class="overlay">VIEW</div></a></div>
+<div class="item development"><a href="images/laptop2.jpg"><img src="images/laptop2.jpg"><div class="overlay">VIEW</div></a></div>
+<div class="item development"><a href="images/laptop3.jfif"><img src="images/laptop3.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item development"><a href="images/laptop4.jfif"><img src="images/laptop4.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item development"><a href="images/laptop5.jfif"><img src="images/laptop5.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item development"><a href="images/laptop6.jpeg"><img src="images/laptop6.jpeg"><div class="overlay">VIEW</div></a></div>
+
+<!-- EARPODS -->
+<div class="item logo"><a href="images/earpods1.jfif"><img src="images/earpods1.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item logo"><a href="images/earpods2.webp"><img src="images/earpods2.webp"><div class="overlay">VIEW</div></a></div>
+<div class="item logo"><a href="images/earpods3.jfif"><img src="images/earpods3.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item logo"><a href="images/earpods4.jfif"><img src="images/earpods4.jfif"><div class="overlay">VIEW</div></a></div>
+<div class="item logo"><a href="images/earpods5.webp"><img src="images/earpods5.webp"><div class="overlay">VIEW</div></a></div>
+<div class="item logo"><a href="images/earpods6.jfif"><img src="images/earpods6.jfif"><div class="overlay">VIEW</div></a></div>
+
+</div>
+</main>
+</section>
+
+<!-- JQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+<!-- Isotope -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
+<!-- Magnific Popup JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+
+<script>
+// Isotope filter
+var $galleryContainer = $('.gallery').isotope({
+    itemSelector: '.item',
+    layoutMode: 'fitRows'
+});
+
+$('.button-group .button').on('click', function(){
+    $('.button-group .button').removeClass('active');
+    $(this).addClass('active');
+
+    var value = $(this).attr('data-filter');
+    $galleryContainer.isotope({ filter: value });
+});
+
+// Magnific Popup
+$('.gallery').magnificPopup({
+  delegate: 'a', 
+  type: 'image',
+  gallery: { enabled: true },
+  removalDelay: 300,
+  mainClass: 'mfp-fade'
+});
+</script>
+<script src="script.js"></script>
+</body>
+
+
+</body>
+</html>
